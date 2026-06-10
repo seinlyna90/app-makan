@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apa nak makan tonight?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      font-family: 'Quicksand', sans-serif; background: radial-gradient(circle, #fffbeb 0%, #fef3c7 100%);
+      padding: 20px; box-sizing: border-box; text-align: center;
+    }
+    .card {
+      background: white; border-radius: 24px; padding: 40px 30px; box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15);
+      max-width: 420px; width: 100%; border: 4px solid #f59e0b;
+    }
+    h1 {
+      font-family: 'Fredoka One', cursive; font-size: 2.25rem; margin: 0 0 25px;
+      background: linear-gradient(45deg, #ef4444, #f59e0b, #3b82f6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    button {
+      background: #ef4444; color: white; border: none; padding: 16px 36px; font-weight: 700;
+      font-size: 1.25rem; border-radius: 9999px; cursor: pointer; transition: all 0.15s;
+      box-shadow: 0 8px 0 #b91c1c; border: 2px solid #b91c1c; margin-bottom: 10px;
+    }
+    button:active { transform: translateY(4px); box-shadow: 0 4px 0 #b91c1c; }
+    button:hover { background: #f87171; }
+    .result { font-weight: 700; opacity: 0; transform: scale(0.8); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .result.show { opacity: 1; transform: scale(1); margin-top: 15px; }
+    .dish-emoji { font-size: 5.5rem; margin: 10px 0; display: block; animation: bounce 0.8s infinite alternate ease-in-out; }
+    .dish-name { font-size: 2.2rem; color: #1e293b; line-height: 1.2; }
+    @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+  </style>
+</head>
+<body>
+  <div class="card" id="food-card">
+    <h1 id="food-title">Apa nak makan tonight?</h1>
+    <button id="pick-btn" onclick="pilih()">Pilih untuk saya!</button>
+    <div id="result-box" class="result">
+      <span class="dish-emoji" id="emoji-box">🍲</span>
+      <div class="dish-name" id="dish-box">-</div>
+    </div>
+  </div>
+  <script>
+    const d = [
+      {n:'Nasi Lemak',e:'🍛'}, {n:'Roti Canai',e:'🫓'}, {n:'Laksa',e:'🍜'},
+      {n:'Satay',e:'🍢'}, {n:'Mee Goreng',e:'🍝'}, {n:'Cendol',e:'🍧'},
+      {n:'Rendang',e:'🥩'}, {n:'Teh Tarik',e:'☕'}, {n:'Mee Rebus',e:'🍜'},
+      {n:'Nasi Kerabu',e:'💙🍚'}
+    ];
+    function pilih() {
+      const r = document.getElementById('result-box');
+      r.classList.remove('show');
+      setTimeout(() => {
+        const item = d[Math.floor(Math.random() * d.length)];
+        document.getElementById('emoji-box').innerText = item.e;
+        document.getElementById('dish-box').innerText = item.n;
+        r.classList.add('show');
+      }, 150);
+    }
+  </script>
+</body>
+</html>
